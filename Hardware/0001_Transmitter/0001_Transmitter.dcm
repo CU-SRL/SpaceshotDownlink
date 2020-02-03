@@ -1,0 +1,47 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP C
+D Capacitor
+$ENDCMP
+#
+$CMP CP
+D Polarized Capacitor
+$ENDCMP
+#
+$CMP D
+D Diode
+$ENDCMP
+#
+$CMP D_SCHOTTKY
+D Schottky Diode
+$ENDCMP
+#
+$CMP D_ZENER
+D Zener Diode
+$ENDCMP
+#
+$CMP GND
+D Power Symbol
+$ENDCMP
+#
+$CMP L
+D Inductor
+$ENDCMP
+#
+$CMP LED
+D Light Emitting Diode
+$ENDCMP
+#
+$CMP LMX2594RHAT
+D Synthesizer
+$ENDCMP
+#
+$CMP R
+D Resistor
+$ENDCMP
+#
+$CMP VDC_3V3
+D Power Symbol
+$ENDCMP
+#
+#End Doc Library
