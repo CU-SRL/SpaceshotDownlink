@@ -150,35 +150,67 @@
 /*
  * Register Operations
  */
- #define LMX_R0_POWERDOWN
- #define LMX_R0_RESET
- #define LMX_R0_MUXOUT_LD_SEL
- #define LMX_R0_FCAL_EN
- #define LMX_R0_OUT_MUTE
- #define LMX_R0_ADD_HOLD
- #define LMX_R5_IPBUF_TYPE
- #define LMX_R5_IPBUF_TERM
- #define LMX_R6_LDO_DLY
- #define LMX_R7_OUT_FORCE
- #define LMX_R8_VCO_DACISET_FORCE
- #define LMX_R8_VCO_CAPCTRL_FORCE
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
- #define LMX_R0_
+ #define LMX_R0_POWERDOWN               ((0x01) << 0)
+ #define LMX_R0_RESET                   ((0x01) << 1)
+ #define LMX_R0_MUXOUT_LD_SEL           ((0x01) << 2)
+ #define LMX_R0_FCAL_EN                 ((0x01) << 3)
+ #define LMX_R0_OUT_MUTE                ((0x01) << 9)
+ #define LMX_R0_ADD_HOLD                ((0x01) << 11)
+ #define LMX_R5_IPBUF_TYPE              ((0x01) << 11)
+ #define LMX_R5_IPBUF_TERM              ((0x01) << 12)
+ #define LMX_R6_LDO_DLY(x)              (((x) & 0x1F) << 11)
+ #define LMX_R7_OUT_FORCE               ((0x01) << 14)
+ #define LMX_R8_VCO_DACISET_FORCE       ((0x01) << 14)
+ #define LMX_R8_VCO_CAPCTRL_FORCE       ((0x01) << 11)
+ #define LMX_R9_MULT_HI                 ((0x01) << 14)
+ #define LMX_R9_OSC_2X                  ((0x01) << 12)
+ #define LMX_R10_MULT(x)                (((x) & 0x1F) << 7)
+ #define LMX_R11_PLL_R(x)               (((x) & 0xFF) << 4)
+ #define LMX_R12_PLL_R_PRE(x)           (((x) & 0xFFF) << 0)
+ #define LMX_R14_CPG(x)                 (((x) & 0x0F) << 3)
+ #define LMX_R16_VCO_DACISET(x)         (((x) & 0x1FF) << 0)
+ #define LMX_R17_VCO_DACISET_STRT(x)    (((x) & 0x1FF) << 0)
+ #define LMX_R19_VCO_CAPCTRL(x)         (((x) & 0xFF) << 0)
+ #define LMX_R20_VCO_SEL(x)             (((x) & 0x07) << 11)
+ #define LMX_R20_VCO_SEL_FORCE          ((0x01) << 10)
+ #define LMX_R34_PLL_N(x)               (((x) & 0x07) << 0)
+ #define LMX_R36_PLL_N(x)               (((x) & 0xFFFF) << 0) 
+ #define LMX_R37_MASH_SEEN_EN           ((0x01) << 15)
+ #define LMX_R38_PLL_DEN(x)             (((x) & 0xFFFF) << 0)
+ #define LMX_R39_PLL_DEN(x)             (((x) & 0xFFFF) << 0)
+ #define LMX_R40_MASH_SEED(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R41_MASH_SEED(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R42_PLL_NUM(x)             (((x) & 0xFFFF) << 0)
+ #define LMX_R43_PLL_NUM(x)             (((x) & 0xFFFF) << 0)
+ #define LMX_R44_OUTA_PWR(x)            (((x) & 0x3F) << 8)
+ #define LMX_R44_OUTA_PD                ((0x01) << 6)
+ #define LMX_R44_OUTB_PD                ((0x01) << 7)
+ #define LMX_R44_MASH_RESET_N           ((0x01) << 5)
+ #define LMX_R44_MASH_ORDER(x)          (((x) & 0x07) << 0)
+ #define LMX_R45_OUTA_MUX(x)            (((x) & 0x03) << 11)
+ #define LMX_R45_OUTB_PWR(x)            (((x) & 0x3F) << 0)
+ #define LMX_R46_OUTB_MUX(x)            (((x) & 0x03) << 0)
+ #define LMX_R59_LD_TYPE                ((0x01) << 0)
+ #define LMX_R60_LD_DLY(x)              (((x) & 0xFFFF) << 0)
+ #define LMX_R75_CHDIV(x)               (((x) & 0x1F) << 6)
+ #define LMX_R78_VCO_CAPCTRL_STRT(x)    (((x) & 0xFF) << 1)
+ #define LMX_R110_rb_VCO_SEL            ((0x07) << 5)
+ #define LMX_R111_rb_VCO_CAPCTRL        ((0xFF) << 0)
+ #define LMX_R112_rb_VCO_DACISET        ((0x1FF) << 0)
+ #define LMX_R114_FSK_EN                ((0x01) << 10)
+ #define LMX_R114_FSK_SPI_LEVEL(x)      (((x) & 0x03) << 5)
+ #define LMX_R114_FSK_SPI_DEV_SEL(x)    (((x) & 0x07) << 2)
+ #define LMX_R114_FSK_MODE_SEL(x)       (((x) & 0x03) << 0)
+ #define LMX_R115_FSK_DEV_SCALE(x)      (((x) & 0x1F) << 3)
+ #define LMX_R116_FSK_DEV0(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R117_FSK_DEV1(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R118_FSK_DEV2(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R119_FSK_DEV3(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R120_FSK_DEV4(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R121_FSK_DEV5(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R122_FSK_DEV6(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R123_FSK_DEV7(x)           (((x) & 0xFFFF) << 0)
+ #define LMX_R124_FSK_SPI_FAST_DEV(x)   (((x) & 0xFFFF) << 0)
  
 
 /*---------------------------------------------------*/
