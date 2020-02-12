@@ -1,3 +1,5 @@
+#include <SPI.h>
+
 /*
  * LMX2572 SPI Instruction Library
  * Contains addresses of all the required registers
@@ -262,5 +264,27 @@
   .R123 = DEF_REG_R123,
   .R124 = DEF_REG_R124,
  };
+
+/*---------------------------------------------------*/
+/*
+ * LMX Reference Frequency Setting Structure
+ */
+ typedef struct {
+  uint8_t OSC_2X;
+  uint8_t PLL_R_PRE;
+  uint8_t MULT;
+  uint8_t PLL_R;
+ }LMX_Ref_Frequency_t ;
+
+
+/*---------------------------------------------------*/
+/*
+ * LMX Frequency Setting Structure
+ */
+ typedef struct {
+  uint16_t PLL_N;
+  uint32_t PLL_NUM;
+  uint32_t PLL_DEN;
+ } LMX_Frequency_t;
  
  LMX2572_TypeDef *LMX2572 = &LMX2572_Data;
