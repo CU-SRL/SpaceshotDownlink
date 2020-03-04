@@ -5,6 +5,7 @@
  * LMX2572 Register Addresses
  */
  #define REG_R0    0x00
+ #define REG_R1    0x01
  #define REG_R5    0x05
  #define REG_R6    0x06
  #define REG_R7    0x07
@@ -32,6 +33,8 @@
  #define REG_R44   0x2C
  #define REG_R45   0x2D
  #define REG_R46   0x2E
+ #define REG_R52   0x34
+ #define REG_R57   0x39
  #define REG_R59   0x3B
  #define REG_R60   0x3C
  #define REG_R75   0x4B
@@ -165,9 +168,11 @@
  #define LMX_R123_FSK_DEV7(x)           (((x) & 0xFFFF) << 0)
  #define LMX_R124_FSK_SPI_FAST_DEV(x)   (((x) & 0xFFFF) << 0)
 
-void LMX2572::LMX2572(void)
+ SPISettings settings = SPISettings(16000000, MSBFIRST, SPI_MODE0);
+
+LMX2572::LMX2572(void)
 {
-  SPI.beginTransaction(SPISettings(16000000, MSBFIRST, SPI_MODE0));
+  SPI.beginTransaction(settings);
   SPI.endTransaction();
   R[0] |= (LMX_R0_RESET | DEF_REG_R0);
   lmx_write(REG_R0, R[0]);
@@ -176,7 +181,7 @@ void LMX2572::LMX2572(void)
 void LMX2572::lmx_write(uint8_t address, uint16_t data)
 {
   address &= ~((0x01) << 7);
-  SPI.beginTransaction();
+  SPI.beginTransaction(settings);
   digitalWrite(init.csb, LOW);
   SPI.transfer(address);
   SPI.transfer16(data);
@@ -188,7 +193,7 @@ uint16_t LMX2572::lmx_read(uint16_t address)
 {
   uint16_t read_value = 0;
   address |= ((0x01) << 7);
-  SPI.beginTransaction();
+  SPI.beginTransaction(settings);
   digitalWrite(init.csb, LOW);
   SPI.transfer(address);
   read_value = SPI.transfer16(0);
@@ -257,7 +262,7 @@ void LMX2572::vco_setting(vco_set_t vco_ex)
   lmx_write(REG_R43, R[43]);
 }
 
-void LMX2572::out_setting(out_set_t out_ex)
+void LMX2572::output_setting(out_set_t out_ex)
 {
   out = out_ex;
   R[44] = (DEF_REG_R44 | LMX_R44_MASH_ORDER(3));
@@ -282,14 +287,14 @@ void LMX2572::fsk_setting(fsk_set_t fsk_ex)
   lmx_write(REG_R115, R[115]);
 }
 
-void LMX2572::fsk(uint16_t deviation)
+void LMX2572::fsk_fast(uint16_t deviation)
 {
   R[124] = deviation;
 
   lmx_write(REG_R124, R[124]);
 }
 
-void LMX2572::calibrate(void)
+void LMX2572::calculate_validate(void)
 {
   R[0] |= LMX_R0_FCAL_EN;
 
